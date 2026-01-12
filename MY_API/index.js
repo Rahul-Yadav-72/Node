@@ -1,6 +1,10 @@
 const express = require('express')
+const birds = require('./birds')
+const student = require('./student')
 const app = express()
 const port = 3000
+
+
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.post('/', (req, res) => res.send('From post'))
@@ -19,6 +23,9 @@ app.get('/student', (req, res) => res.send({
 
 }
 ))
+app.use(express.json());
+app.use('/birds',birds)
+app.use('/student', student)
 app.get('/example/b', (req, res, next) => {
     console.log('the response will be sent by the next function ...')
     next()
@@ -29,4 +36,16 @@ app.get('/example/b', (req, res, next) => {
 app.get('/myname/:fname/:lname',(req,res) => res.send(
     `Welcome ${req.params.fname} ${req.params.lname}`
 ))
+app.route('/book')
+  .get((req, res) => {
+    res.send('Get a random book')
+  })
+  .post((req, res) => {
+    res.send('Add a book')
+  })
+  .put((req, res) => {
+    res.send('Update the book')
+  })
+  
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

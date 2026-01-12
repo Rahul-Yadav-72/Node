@@ -1,0 +1,4 @@
+create end point for students ?
+create end point starting and ending f&d in between 1 or more fod are allows
+create end point which will start with s and ends with d
+create end point 
